@@ -5,9 +5,9 @@ import iconPerson from './Icons/icon-person.vue'
 import { computed, ref } from 'vue'
 
 const selectedTip = ref(null)
-const number_people = ref(1)
+const number_people = ref(null)
 const custom_input = ref(null)
-const billAmount = ref(0)
+const billAmount = ref(null)
 
 const tipAmountPerPerson = computed(() => {
   const tipPercentage = custom_input.value || selectedTip.value || 0
@@ -48,6 +48,7 @@ const deb = (i) => {
               v-model="billAmount"
               class="outline-none bg-transparent text-right"
               type="number"
+              placeholder="0"
             />
           </div>
         </div>
@@ -96,6 +97,7 @@ const deb = (i) => {
               class="outline-none bg-transparent text-right"
               v-model="number_people"
               type="number"
+              placeholder="0"
             />
           </div>
         </div>
