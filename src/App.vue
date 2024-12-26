@@ -102,7 +102,7 @@ const deb = (i) => {
       </div>
       <div class="flex flex-col md:gap-24 gap-10 rounded-2xl right-52 bg-cyan-900 p-5 md:p-8">
         <div class="flex flex-col gap-5">
-          <div class="flex items-center gap-[25%]">
+          <div class="flex items-center md:gap-24 gap-[25%]">
             <div class="text-xs text-new">
               <p>Tip Amount</p>
               <span>/ person</span>
@@ -115,7 +115,7 @@ const deb = (i) => {
               }}
             </h1>
           </div>
-          <div class="flex items-center gap-[34%]">
+          <div class="flex items-center md:gap-24 gap-[34%]">
             <div class="text-xs text-new">
               <p>Total</p>
               <span>/ person</span>
