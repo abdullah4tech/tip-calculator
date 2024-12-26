@@ -5,9 +5,9 @@ import iconPerson from './Icons/icon-person.vue'
 import { computed, ref } from 'vue'
 
 const selectedTip = ref(null)
-const number_people = ref(null)
+const number_people = ref(1)
 const custom_input = ref(null)
-const billAmount = ref(null)
+const billAmount = ref(0)
 
 const tipAmountPerPerson = computed(() => {
   const tipPercentage = custom_input.value || selectedTip.value || 0
@@ -38,9 +38,6 @@ const deb = (i) => {
     <div
       class="flex flex-col md:flex-row md:gap-14 md:w-[500px] gap-14 p-7 md:p-9 rounded-3xl bg-white"
     >
-      <!-- Content here -->
-
-      <!-- Start Input -->
       <div class="flex flex-col gap-8">
         <div class="flex flex-col gap-2">
           <label for="bills">Bill</label>
@@ -103,26 +100,32 @@ const deb = (i) => {
           </div>
         </div>
       </div>
-      <!-- End Input -->
-
       <div class="flex flex-col md:gap-24 gap-10 rounded-2xl right-52 bg-cyan-900 p-5 md:p-8">
         <div class="flex flex-col gap-5">
-          <div class="flex items-center gap-24">
+          <div class="flex items-center gap-[25%]">
             <div class="text-xs text-new">
               <p>Tip Amount</p>
               <span>/ person</span>
             </div>
             <h1 class="md:text-4xl text-3xl">
-              ${{ tipAmountPerPerson ? tipAmountPerPerson.toFixed(2) : '0.00' }}
+              ${{
+                !isNaN(tipAmountPerPerson) && tipAmountPerPerson !== Infinity
+                  ? tipAmountPerPerson.toFixed(2)
+                  : '0.00'
+              }}
             </h1>
           </div>
-          <div class="flex items-center gap-28">
+          <div class="flex items-center gap-[34%]">
             <div class="text-xs text-new">
               <p>Total</p>
               <span>/ person</span>
             </div>
             <h1 class="md:text-4xl text-3xl">
-              ${{ TotalPerPerson ? TotalPerPerson.toFixed(2) : '0.00' }}
+              ${{
+                !isNaN(TotalPerPerson) && TotalPerPerson !== Infinity
+                  ? TotalPerPerson.toFixed(2)
+                  : '0.00'
+              }}
             </h1>
           </div>
         </div>
@@ -133,31 +136,28 @@ const deb = (i) => {
 </template>
 
 <style scoped>
-/* Primary Colors */
 .input-feild,
 .ll {
-  background-color: hsl(189, 41%, 97%); /* Very light grayish cyan */
+  background-color: hsl(189, 41%, 97%);
 }
 
 .ll {
-  color: hsl(186, 14%, 43%); /* Dark grayish cyan */
+  color: hsl(186, 14%, 43%);
 }
 
 label,
 p {
   font-size: small;
-  color: hsl(184, 14%, 56%); /* Grayish cyan */
+  color: hsl(184, 14%, 56%);
 }
 
-/* Input Field Styles */
 .input-feild input {
-  color: hsl(183, 100%, 15%); /* Very dark cyan */
+  color: hsl(183, 100%, 15%);
 }
 
-/* Button */
 button {
-  background-color: hsl(172, 67%, 45%); /* Strong cyan */
-  color: hsl(0, 0%, 100%); /* White */
+  background-color: hsl(172, 67%, 45%);
+  color: hsl(0, 0%, 100%);
   border: none;
   border-radius: 5px;
   font-weight: bold;
@@ -165,21 +165,43 @@ button {
 }
 
 button:hover {
-  background-color: hsl(186, 19%, 89%); /* Very dark cyan */
+  background-color: hsl(186, 19%, 89%);
 }
 
-/* Tip Amount Display */
 .text-new {
-  color: hsl(186, 14%, 43%); /* Dark grayish cyan */
+  color: hsl(186, 14%, 43%);
 }
 
 h1 {
-  color: hsl(172, 67%, 45%); /* Strong cyan */
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  min-width: 100px;
+  max-width: 150px;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: hsl(172, 67%, 45%);
 }
 
-/* Overall Background */
 .bg-cyan-900 {
-  background-color: hsl(183, 100%, 15%); /* Very dark cyan */
-  color: hsl(0, 0%, 100%); /* White */
+  max-width: 300px;
+  width: 100%;
+  background-color: hsl(183, 100%, 15%);
+  color: hsl(0, 0%, 100%);
 }
+
+.grid h2 {
+  min-width: 80px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+span.text-xs {
+  height: 1rem;
+  display: inline-block;
+}
+
 </style>
